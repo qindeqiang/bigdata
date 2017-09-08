@@ -14,6 +14,13 @@
         <module>bigdata-spark</module>
         <module>bigdata-kafka</module>
         <module>bigdata-email</module>
+        <module>bigdata-hadoop</module>
+        <module>bigdata-flume</module>
+        <module>bigdata-hive</module>
+        <module>bigdata-jetty</module>
+        <module>bigdata-mongodb</module>
+        <module>bigdata-tcp</module>
+        <module>bigdata-websocket</module>
     </modules>
 
 

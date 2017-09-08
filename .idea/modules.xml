@@ -5,9 +5,16 @@
       <module fileurl="file://$PROJECT_DIR$/bigdata.iml" filepath="$PROJECT_DIR$/bigdata.iml" />
       <module fileurl="file://$PROJECT_DIR$/bigdata-elasticsearch/bigdata-elasticsearch.iml" filepath="$PROJECT_DIR$/bigdata-elasticsearch/bigdata-elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/bigdata-email/bigdata-email.iml" filepath="$PROJECT_DIR$/bigdata-email/bigdata-email.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigdata-flume/bigdata-flume.iml" filepath="$PROJECT_DIR$/bigdata-flume/bigdata-flume.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigdata-hadoop/bigdata-hadoop.iml" filepath="$PROJECT_DIR$/bigdata-hadoop/bigdata-hadoop.iml" />
       <module fileurl="file://$PROJECT_DIR$/bigdata-hbase/bigdata-hbase.iml" filepath="$PROJECT_DIR$/bigdata-hbase/bigdata-hbase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigdata-hive/bigdata-hive.iml" filepath="$PROJECT_DIR$/bigdata-hive/bigdata-hive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigdata-jetty/bigdata-jetty.iml" filepath="$PROJECT_DIR$/bigdata-jetty/bigdata-jetty.iml" />
       <module fileurl="file://$PROJECT_DIR$/bigdata-kafka/bigdata-kafka.iml" filepath="$PROJECT_DIR$/bigdata-kafka/bigdata-kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigdata-mongodb/bigdata-mongodb.iml" filepath="$PROJECT_DIR$/bigdata-mongodb/bigdata-mongodb.iml" />
       <module fileurl="file://$PROJECT_DIR$/bigdata-spark/bigdata-spark.iml" filepath="$PROJECT_DIR$/bigdata-spark/bigdata-spark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigdata-tcp/bigdata-tcp.iml" filepath="$PROJECT_DIR$/bigdata-tcp/bigdata-tcp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigdata-websocket/bigdata-websocket.iml" filepath="$PROJECT_DIR$/bigdata-websocket/bigdata-websocket.iml" />
       <module fileurl="file://$PROJECT_DIR$/site.bigdataresource.demos.iml" filepath="$PROJECT_DIR$/site.bigdataresource.demos.iml" />
     </modules>
   </component>
