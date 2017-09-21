@@ -8,6 +8,15 @@
     <artifactId>site.bigdataresource.demos</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <spark.version>2.1.0</spark.version>
+        <hbase.version>1.2.0</hbase.version>
+        <elasticsearch.version>5.5.1</elasticsearch.version>
+        <kafka.version>0.10.2.0</kafka.version>
+        <scala.version>2.11.8</scala.version>
+        <junit.version>4.12</junit.version>
+        <scala.binary.version>2.11</scala.binary.version>
+    </properties>
     <modules>
         <module>bigdata-hbase</module>
         <module>bigdata-elasticsearch</module>
@@ -21,7 +30,80 @@
         <module>bigdata-mongodb</module>
         <module>bigdata-tcp</module>
         <module>bigdata-websocket</module>
+        <module>bigdata-sparkstreaming</module>
+        <module>bigdata-redis</module>
+        <module>bigdata-zookeeper</module>
+        <module>bigdata-sqoop</module>
+        <module>bigdata-storm</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_${scala.binary.version}</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming_${scala.binary.version}</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming-kafka-0-8_${scala.binary.version}</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch-spark-20_2.11 -->
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch-spark-20_${scala.binary.version}</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-actors</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scalap</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+
+    </dependencies>
 </project>
