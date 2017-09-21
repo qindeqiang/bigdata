@@ -20,7 +20,6 @@
     <modules>
         <module>bigdata-hbase</module>
         <module>bigdata-elasticsearch</module>
-        <module>bigdata-spark</module>
         <module>bigdata-kafka</module>
         <module>bigdata-email</module>
         <module>bigdata-hadoop</module>
@@ -35,6 +34,7 @@
         <module>bigdata-sqoop</module>
         <module>bigdata-storm</module>
         <module>bigdata-mysql</module>
+        <module>bigdata-spark</module>
     </modules>
 
     <dependencyManagement>
