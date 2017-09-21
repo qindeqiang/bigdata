@@ -34,7 +34,7 @@
         <module>bigdata-sqoop</module>
         <module>bigdata-storm</module>
         <module>bigdata-mysql</module>
-        <module>bigdata-spark</module>
+        <module>bigdata-spark2</module>
     </modules>
 
     <dependencyManagement>
