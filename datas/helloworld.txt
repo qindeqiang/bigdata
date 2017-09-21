@@ -1,0 +1,6 @@
+hello world
+hello Java
+hello bigdata
+hello hadoop
+hello spark
+hello spark streaming
