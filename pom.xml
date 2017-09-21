@@ -30,11 +30,11 @@
         <module>bigdata-mongodb</module>
         <module>bigdata-tcp</module>
         <module>bigdata-websocket</module>
-        <module>bigdata-sparkstreaming</module>
         <module>bigdata-redis</module>
         <module>bigdata-zookeeper</module>
         <module>bigdata-sqoop</module>
         <module>bigdata-storm</module>
+        <module>bigdata-mysql</module>
     </modules>
 
     <dependencyManagement>

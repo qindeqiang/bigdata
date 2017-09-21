@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>site.bigdataresource.sparkstreaming</artifactId>
+    <artifactId>bigdata-mysql</artifactId>
 
 
 </project>
