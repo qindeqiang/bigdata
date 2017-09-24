@@ -35,6 +35,7 @@
         <module>bigdata-storm</module>
         <module>bigdata-mysql</module>
         <module>bigdata-spark2</module>
+        <module>bigdata-utils</module>
     </modules>
 
     <dependencyManagement>
