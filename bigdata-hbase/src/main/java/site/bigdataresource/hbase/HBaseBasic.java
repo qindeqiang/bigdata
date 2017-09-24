@@ -3,12 +3,15 @@ package site.bigdataresource.hbase;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
-import org.apache.hadoop.hbase.client.Admin;
-import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import site.bigdataresource.utils.StringUtils;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.Set;
 
 /**
  * HBase的基本操作包括以下功能——
@@ -39,32 +42,106 @@ public class HBaseBasic {
     }
 
 
-    public void get(Connection conn, TableName tableName, String rowKey) {
+    /**
+     * 根据rowkey获取指定表的数据
+     *
+     * @param connection
+     * @param tableName
+     * @param rowKey
+     */
+    public void get(Connection connection, TableName tableName, String rowKey) throws IOException {
+        Table table = null;
+        try {
+            table = connection.getTable(tableName);
+            Get get = new Get(StringUtils.stringToByteArray(rowKey));//由rowkey创建一个Get
+            Result result = table.get(get);
+            NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> map = result.getMap();
+            Set<Map.Entry<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>>> entries = map.entrySet();
+            for (Map.Entry<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> entry : entries) {
+                //遍历每一行
+                logger.info("ColumnFamily:{}", StringUtils.byteArrayToString(entry.getKey()));
+                NavigableMap<byte[], NavigableMap<Long, byte[]>> eValue = entry.getValue();
+                Set<Map.Entry<byte[], NavigableMap<Long, byte[]>>> valueMap = eValue.entrySet();
+                for (Map.Entry<byte[], NavigableMap<Long, byte[]>> value : valueMap) {
+                    System.out.println(StringUtils.byteArrayToString(value.getKey()) + "\t");
+                    NavigableMap<Long, byte[]> vs = value.getValue();
+                    Set<Map.Entry<Long, byte[]>> cInfo = vs.entrySet();
+                    for (Map.Entry<Long, byte[]> c : cInfo) {
+                        System.out.println("Column Name=" + c.getKey() + "\t"
+                                + "Column Value=" + c.getValue());
+                    }
+                }
 
+
+            }
+        } finally {
+            if (table != null)
+                table.close();
+        }
     }
 
+    /**
+     * 获取HBase中所有表的信息
+     *
+     * @param connection
+     * @throws IOException
+     */
     public void getAllTables(Connection connection) throws IOException {
-//        HBaseAdmin admin=new HBaseAdmin(connection)
         admin = connection.getAdmin();
+        //获取所有的表的描述信息
         HTableDescriptor[] hTableDescriptors = admin.listTables();
 
 
         for (HTableDescriptor tableDescriptor : hTableDescriptors) {
+            //获取名称
             String name = tableDescriptor.getNameAsString();
-            System.out.println("TableName="+name);
+            System.out.println("TableName=" + name);
             //显示所有的列族
             HColumnDescriptor[] columnFamilies = tableDescriptor.getColumnFamilies();
             for (HColumnDescriptor columnFamily : columnFamilies) {
-                byte[] columnFamilyName = columnFamily.getName();
-                System.out.print(new String(columnFamilyName) + "\t");
+                byte[] columnFamilyName = columnFamily.getName();//列族名称
+                short dfsRep = columnFamily.getDFSReplication();// 列族的备份数，默认为0
+
+
+                System.out.print(StringUtils.byteArrayToString(columnFamilyName) + "\t"
+                        + "DFSReplication:" + dfsRep + "\t"
+                );
 
             }
             System.out.println("\n---------------------------------");
         }
     }
 
-    public void put(Connection connection, TableName tableName, String rowkey, String columnFamily, String column, String data) {
-//        connection.
+    /***
+     * 添加列值
+     * @param connection
+     * @param tableName
+     * @param rowkey
+     * @param columnFamily
+     * @param column
+     * @param data
+     */
+    public void put(Connection connection, TableName tableName,
+                    String rowkey, String columnFamily, String column, String data) {
+        Table table = null;
+        try {
+            table = connection.getTable(tableName);
+            Put put = new Put(StringUtils.stringToByteArray(rowkey));
+            put.addColumn(StringUtils.stringToByteArray(columnFamily),
+                    StringUtils.stringToByteArray(column),
+                    StringUtils.stringToByteArray(data));//添加一列，按照列族，列，列值的顺序指定
+            table.put(put);//table.put(puts)可以实现批量添加
+            //TODO:考虑使用Spark实现批量数据添加到HBase中
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (table != null)
+                try {
+                    table.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
     }
 
     /**
