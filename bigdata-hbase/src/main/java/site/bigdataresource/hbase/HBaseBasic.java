@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Set;
 
+import org.apache.hadoop.hbase.mapreduce.*;
+
 /**
  * HBase的基本操作包括以下功能——
  * 1)、创建表；
@@ -132,6 +134,9 @@ public class HBaseBasic {
                     StringUtils.stringToByteArray(data));//添加一列，按照列族，列，列值的顺序指定
             table.put(put);//table.put(puts)可以实现批量添加
             //TODO:考虑使用Spark实现批量数据添加到HBase中
+            //LoadIncrementalHFiles loadIncrementalHFiles = new LoadIncrementalHFiles(connection.getConfiguration());
+
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
