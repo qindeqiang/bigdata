@@ -183,7 +183,9 @@ public class HBaseBasic {
     public static void main(String[] args) throws Exception {
         HBaseBasic hBaseBasic = new HBaseBasic();
         Connection con = hBaseBasic.initialConnection();
-        hBaseBasic.getAllTables(con);
+        //hBaseBasic.getAllTables(con);
+        TableName tableName=TableName.valueOf(args[0]);
+        hBaseBasic.createHBaseTable(con,tableName,"A");
 
 
         //创建HBase的连接
