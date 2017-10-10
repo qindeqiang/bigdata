@@ -4,6 +4,7 @@ import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.io.compress.Compression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import site.bigdataresource.utils.StringUtils;
@@ -219,7 +220,9 @@ public class HBaseBasic {
             //定义表
             HTableDescriptor tableDescriptor = new HTableDescriptor(tableName);
             for (String cf : columnFamilies) {
-                tableDescriptor.addFamily(new HColumnDescriptor(cf));//指定表的列族
+                HColumnDescriptor columnDescriptor = new HColumnDescriptor(cf);
+                columnDescriptor.setCompressionType(Compression.Algorithm.SNAPPY);
+                tableDescriptor.addFamily(columnDescriptor);//指定表的列族
 
             }
 
