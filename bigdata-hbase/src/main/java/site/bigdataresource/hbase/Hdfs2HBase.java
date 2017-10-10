@@ -33,7 +33,7 @@ public class Hdfs2HBase {
         }
         String hbaseTableName = args[0];
         String columnFamily = "A";
-        byte[] cf = Bytes.toBytes(columnFamily);
+        final byte[] cf = Bytes.toBytes(columnFamily);
 
 
         Configuration hbaseConf = HBaseConfiguration.create();
@@ -48,7 +48,7 @@ public class Hdfs2HBase {
         hbaseConf.set(TableOutputFormat.OUTPUT_TABLE, hbaseTableName);
 
         Connection connection = ConnectionFactory.createConnection();
-        Table table = connection.getTable(TableName.valueOf(hbaseTableName));
+        final Table table = connection.getTable(TableName.valueOf(hbaseTableName));
 
         Job job = Job.getInstance(hbaseConf);
         job.setMapOutputKeyClass(ImmutableBytesWritable.class);
