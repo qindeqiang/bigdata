@@ -62,6 +62,7 @@ public class WriteESWithTCP implements Serializable {
     private static void save2ESWithTcp(Dataset<Row> rows) {
         rows.foreachPartition(new ForeachPartitionFunction<Row>() {
             public void call(Iterator<Row> iterator) throws Exception {
+                System.setProperty("es.set.netty.runtime.available.processors", "false");
                 TransportClient client = initEsConnection();
                 BulkRequestBuilder bulkRequest = client.prepareBulk();
 
@@ -90,7 +91,7 @@ public class WriteESWithTCP implements Serializable {
                     }
                 }
 
-                client.close();
+                //client.close();
 
             }
         });
