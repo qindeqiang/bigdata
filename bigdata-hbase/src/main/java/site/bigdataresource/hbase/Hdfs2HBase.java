@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-/**
+/**site.bigdataresource.hbase.Hdfs2HBase
  * Created by deqiangqin@gmail.com on 10/10/17.
  */
 public class Hdfs2HBase {

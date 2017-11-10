@@ -20,11 +20,11 @@ public class JavaSparkSessionSingleton {
         return instance;
     }
 
-    public static SparkSession getInstance(String appName, String isLocalMode) {
+    public static SparkSession getInstance(String appName, String mode) {
         if (instance == null) {
             SparkConf sparkConf = new SparkConf();
             sparkConf.setAppName(appName);
-            if ("y".equals(isLocalMode.toLowerCase()))
+            if ("y".equals(mode.toLowerCase()))
                 sparkConf.setMaster("local[2]");
 
             SparkSession.builder().config(sparkConf).getOrCreate();

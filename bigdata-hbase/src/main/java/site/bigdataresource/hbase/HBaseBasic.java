@@ -91,6 +91,7 @@ public class HBaseBasic {
      */
     public void getAllTables(Connection connection) throws IOException {
         admin = connection.getAdmin();
+
         //获取所有的表的描述信息
         HTableDescriptor[] hTableDescriptors = admin.listTables();
 
