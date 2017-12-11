@@ -34,8 +34,10 @@
         <module>bigdata-sqoop</module>
         <module>bigdata-storm</module>
         <module>bigdata-mysql</module>
-        <module>bigdata-spark2</module>
         <module>bigdata-utils</module>
+        <module>bigdata-assembly</module>
+        <module>bigdata-phoenix</module>
+        <module>bigdata-spark</module>
     </modules>
 
     <dependencyManagement>
@@ -108,40 +110,40 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.2</version>
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<version>3.6.0</version>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                <!--<version>2.5.2</version>-->
 
-                <configuration>
-                    <tarLongFileMode>gnu</tarLongFileMode>
-                    <appendAssemblyId>true</appendAssemblyId>
-                    <descriptorRefs>
-                        <descriptor>jar-with-dependencies</descriptor>
-                    </descriptorRefs>
-                </configuration>
+                <!--<configuration>-->
+                    <!--<tarLongFileMode>gnu</tarLongFileMode>-->
+                    <!--<appendAssemblyId>true</appendAssemblyId>-->
+                    <!--<descriptorRefs>-->
+                        <!--<descriptor>jar-with-dependencies</descriptor>-->
+                    <!--</descriptorRefs>-->
+                <!--</configuration>-->
 
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>make-assembly</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>single</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 </project>

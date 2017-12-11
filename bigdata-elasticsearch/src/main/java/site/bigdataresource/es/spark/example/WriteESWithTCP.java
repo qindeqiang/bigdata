@@ -19,14 +19,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
+ * 将qyxx_basic的数据保存到
  * Created by deqiangqin@gmail.com on 11/10/17.
  */
 public class WriteESWithTCP implements Serializable {
 
     private static SparkSession spark;
-    private final static String ES_CLUSTER_NAME = "finance_ip";
+    private final static String ES_CLUSTER_NAME = "data-test";
     private final static String ES_INDEX = "finance_ip";
-    private final static String ES_INDEX_TYPE = "zhixing1";
+    private final static String ES_INDEX_TYPE = "qyxx_basic_map";
     private final static String ES_TCP_HOST = "10.28.100.31";
     private final static Integer ES_TCP_POST = 59303;
 
@@ -36,9 +37,6 @@ public class WriteESWithTCP implements Serializable {
             System.err.println("");
             System.exit(1);
         }
-
-        System.setProperty("es.set.netty.runtime.available.processors", "false");
-
         int numpartition = Integer.valueOf(args[0]);
 
         SparkConf conf = new SparkConf();
@@ -48,7 +46,7 @@ public class WriteESWithTCP implements Serializable {
 
         spark = SparkSession.builder().config(conf).enableHiveSupport().getOrCreate();
 
-        String hdfsPath = "hdfs://10.28.200.210:8020/user/zhixing";
+        String hdfsPath = "hdfs://10.28.200.210:8020/user/qyxx_basic";
         Dataset<Row> ds = spark.read().orc(hdfsPath);
 
         ds.repartition(numpartition);
@@ -109,11 +107,11 @@ public class WriteESWithTCP implements Serializable {
 
     private static TransportClient initEsConnection() throws Exception {
         Settings settings = Settings.builder()
-                .put("cluster.name", "data-test")
+                .put("cluster.name", ES_CLUSTER_NAME)
                 .put("client.transport.sniff", false).build();
 
         TransportClient client = new PreBuiltTransportClient(settings);
-        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("10.28.100.31"), ES_TCP_POST));
+        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(ES_TCP_HOST), ES_TCP_POST));
         return client;
     }
 }

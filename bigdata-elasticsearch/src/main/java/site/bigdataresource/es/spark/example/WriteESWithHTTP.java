@@ -32,6 +32,7 @@ public class WriteESWithHTTP {
         conf.set("spark.sql.warehouse.dir", "hdfs://10.28.200.210:8020/user/hive/warehouse");
 
         spark = SparkSession.builder().config(conf).enableHiveSupport().getOrCreate();
+        String appId = spark.sparkContext().applicationId();
 
         String hdfsPath = "hdfs://10.28.200.210:8020/user/zhixing";
         Dataset<Row> ds = spark.read().orc(hdfsPath);
@@ -40,5 +41,6 @@ public class WriteESWithHTTP {
         JavaEsSparkSQL.saveToEs(ds, ES_INDEX + "/" + ES_INDEX_TYPE);
 
         spark.stop();
+
     }
 }
