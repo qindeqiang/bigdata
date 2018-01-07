@@ -38,6 +38,7 @@
         <module>bigdata-assembly</module>
         <module>bigdata-phoenix</module>
         <module>bigdata-spark</module>
+        <module>bigdata-http</module>
     </modules>
 
     <dependencyManagement>

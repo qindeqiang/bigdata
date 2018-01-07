@@ -17,8 +17,9 @@ public class PhoenixManager {
             ex.printStackTrace();
         }
 
+        //URL的设置方法：jdbc:phoenix:192.168.122.1:2181:/hbase 最后一个是Hbase在ZK的路径
         try {
-            Connection con = DriverManager.getConnection("jdbc:phoenix:192.168.122.1:2181");
+            Connection con = DriverManager.getConnection("jdbc:phoenix:192.168.122.1:2181:/hbase");
             //Statement statement = con.createStatement();
 
             PreparedStatement statement = con.prepareStatement("select * from WEB_STAT");
@@ -34,3 +35,45 @@ public class PhoenixManager {
         }
     }
 }
+/**
+ * 执行结果：
+ * Apple.com
+ Apple.com
+ Google.com
+ Google.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Apple.com
+ Apple.com
+ Apple.com
+ Apple.com
+ Apple.com
+ Apple.com
+ Apple.com
+ Google.com
+ Google.com
+ Google.com
+ Google.com
+ Google.com
+ Google.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ Salesforce.com
+ */
